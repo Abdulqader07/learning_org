@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home Page</title>
+</head>
+<body>
+    <div class="main-container">
+        <div class="current-status">
+            <div class="status-bar">
+                <h1>Current: <%= resources.filter(resource => resource.status === 'current').length %></h1>
+            </div>
+            <div class="status-items">
+                <ul>
+                    <% resources.forEach(resource => { %>
+                        <% if(resource.status === 'current'){ %>
+                            <li>
+                                <h3><a href="resource/<%= resource.id %>/"><%= resource.name %></a></h3>
+                            </li>
+                    <% }}); %>
+                </ul>
+            </div>
+        </div>
+        <div class="library-status">
+            <div class="status-bar">
+                <h1>Library: <%= resources.filter(resource => resource.status === 'library').length %></h1>
+                <div class="status-items">
+                    <ul>
+                        <% resources.forEach(resource => { %>
+                             <% if(resource.status === 'library'){ %>
+                                <li>
+                                    <h3><a href="resource/<%= resource.id %>/"><%= resource.name %></a></h3>
+                                </li>
+                        <% }}); %>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="finished-status">
+            <div class="status-bar">
+                <h1>Finished: <%= resources.filter(resource => resource.status === 'finished').length %></h1>
+                <div class="status-items">
+                    <ul>
+                    <% resources.forEach(resource => { %>
+                        <% if(resource.status === 'finished'){ %>
+                            <li>        
+                                <h3><a href="resource/<%= resource.id %>/"><%= resource.name %></a></h3>
+                            </li>
+                    <% }}); %>
+                </ul>
+                </div>
+            </div>
+        </div>
+        <div class="addAndDelete">
+            <button type="button" id="addResource">Add</button>
+        </div>
+    </div>
+    <script>
+            document.addEventListener('DOMContentLoaded', ()=>{
+                const btn = document.getElementById('addResource');
+                if(btn){
+                    btn.addEventListener('click', ()=>{
+                        window.location.href = '/add';  
+                })
+            }
+        });
+    </script>
+</body>
+</html>

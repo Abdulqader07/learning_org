@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Add Resources</title>
+</head>
+<body>
+    <div class="form-container">
+        <div class="description">
+            <h1>Add Your Resource:</h1>
+            <h5>
+                This page is for adding a resource to track what you're studying, learning right now.
+                Just add the link of the resource and name it something easy to remember and There's something you got to know.
+                You can add <b>Only</b> three resources to the <b>Current</b> status.
+                And you can have <b>Only</b> ten resources to the <b>Library</b> status. 
+            </h5>
+        </div>
+        <div class="form-container">
+            <form action="/add" method="post">
+                <fieldset>
+                    <div class="form-link">
+                        <label for="link">Link: </label>
+                        <input type="text" placeholder="www.example.com" name="link" required>
+                    </div>
+                    <div class="form-name">
+                        <label for="name">Name: </label>
+                        <input type="text" placeholder="Node.js Doc" name="name" required>
+                    </div>
+                    <div class="choose-status">
+                        <label for="status">Choose Status:</label>
+                        <label for="library">
+                            Current<input type="radio" value="current" name="status">
+                        </label>
+                        <label for="library">
+                            Library<input type="radio" value="library" name="status">
+                        </label>
+                        <label for="finished">
+                            Finished<input type="radio" value="finished" name="status">
+                        </label>
+                    </div>
+                    <button type="submit">Submit</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+
+</body>
+</html>
