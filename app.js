@@ -21,10 +21,6 @@ db.exec(`
         )
     `);
 
-// This is a query to delete the entire database 
-
-const stemt = db.prepare(`
-    DELETE FROM resources`);
 
 // ---##--- Routes ---##--- //
 
@@ -47,7 +43,6 @@ app.get('/resource/:id/', (req, res)=>{
 
 app.post('/resource/:id/', (req, res)=>{
     const id = parseInt(req.params.id);
-    console.log(id);
     const stmt = db.prepare(`
         DELETE from resources WHERE id = ?`)
     stmt.run(id);
@@ -60,7 +55,7 @@ app.get('/add', (req, res)=>{
 
 app.post('/add', (req, res)=>{
     const {link, name, status} = req.body;
-    
+
     const number = function(status){
         if(status === 'current'){
             return 3;
@@ -86,6 +81,25 @@ app.post('/add', (req, res)=>{
     else{
         res.status(400).render('400', { title: '400 ERROR!' });
     }
+});
+
+app.get('/update/:id/', (req, res)=>{
+    const id = parseInt(req.params.id);
+    const stmt = db.prepare(`
+        SELECT id FROM resources WHERE id = (?)`);
+    const resource = stmt.get(id);
+
+    res.render('update', { resource });
+});
+
+app.post('/update/:id/', (req, res)=>{
+    const id = parseInt(req.params.id);
+    const {link, name, status} = req.body;
+    const stmt = db.prepare(`
+        UPDATE resources SET link = (?), name = (?), status = (?) WHERE id = (?)`);
+    stmt.run(link, name, status, id);
+
+    res.redirect(`/resource/${id}/`);
 });
 
 app.listen(PORT, ()=>{

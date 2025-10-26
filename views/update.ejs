@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update</title>
+</head>
+<body>
+    <div class="container">
+        <div class="text-container">
+            <h1>Update Your Current Resource:</h1>
+            <p>If you had a typo or wanted to edit the existing resource:</p>
+        </div>
+        <div class="form-container">
+            <form action="/update/<%= resource.id %>" method="post">
+                <fieldset>
+                    <div class="form-link">
+                        <label for="link">Link: </label>
+                        <input type="text" placeholder="www.example.com" name="link" required>
+                    </div>
+                    <div class="form-name">
+                        <label for="name">Name: </label>
+                        <input type="text" placeholder="Node.js Doc" name="name" required>
+                    </div>
+                    <div class="choose-status">
+                        <label for="status">Choose Status:</label>
+                        <label for="library">
+                            Current<input type="radio" value="current" name="status">
+                        </label>
+                        <label for="library">
+                            Library<input type="radio" value="library" name="status">
+                        </label>
+                        <label for="finished">
+                            Finished<input type="radio" value="finished" name="status">
+                        </label>
+                    </div>
+                    <button type="submit">Update</button>
+                </fieldset>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
